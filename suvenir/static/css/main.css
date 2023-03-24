@@ -1,0 +1,8 @@
+body {
+    margin: 0;
+}
+
+.header {
+    max-width: 1000px;
+    margin: auto;
+}
