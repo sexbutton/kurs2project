@@ -1,8 +1,16 @@
-body {
+body, html {
     margin: 0;
 }
 
-.header {
+.container {
     max-width: 1000px;
     margin: auto;
+}
+
+.header {
+    display: flex;
+}
+
+.header.li {
+    display: inline;
 }

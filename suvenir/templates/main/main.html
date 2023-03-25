@@ -9,26 +9,28 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-    <div class="header">
-        <a href="">
-            <img src="" alt="">
-        </a>
-        <ul>
-            <li>Новинки</li>
-            <li>Популярное</li>
-            <li>Распродажа</li>
-        </ul>
-        <form action="">
-            <input type="search">
-            <button>Искать</button>
-        </form>
-        <div class="regandbusket">
+    <div class="container">
+        <div class="header">
             <a href="">
                 <img src="" alt="">
             </a>
-            <a href="">
-                <img src="" alt="">
-            </a>
+            <ul>
+                <li>Новинки</li>
+                <li>Популярное</li>
+                <li>Распродажа</li>
+            </ul>
+            <form action="">
+                <input type="search">
+                <button>Искать</button>
+            </form>
+            <div class="regandbusket">
+                <a href="">
+                    <img src="{% static 'img/basket(32px).png' %}" alt="">
+                </a>
+                <a href="">
+                    <img src="{% static 'img/reg(32px).png' %}" alt="">
+                </a>
+            </div>
         </div>
     </div>
 </body>
