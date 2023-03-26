@@ -11,13 +11,13 @@
 <body>
     <div class="container">
         <div class="header">
-            <a href="">
-                <img src="" alt="">
+            <a href="{% url 'main' %}">
+                <img src="{% static 'img/mainlogo.png' %}" alt="">
             </a>
             <ul>
-                <li>Новинки</li>
-                <li>Популярное</li>
-                <li>Распродажа</li>
+                <li><a href="">Новинки</a></li>
+                <li><a href="">Популярное</a></li>
+                <li><a href="">Распродажа</a></li>
             </ul>
             <form action="">
                 <input type="search">
@@ -32,6 +32,26 @@
                 </a>
             </div>
         </div>
+        <div class="main">
+            <div class="filter">
+
+            </div>
+            <div class="products">
+                <div class="product">
+                    <img src="{% static 'img/test.png' %}" alt="">
+                    <div class="infoproduct">
+                        <div>
+                            Название
+                        </div>
+                        <div>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, deserunt.
+                        </div>
+                    </div>
+                    <img src="{% static 'img/like.png' %}" alt="">
+                    <img src="{% static 'img/add.png' %}" alt="">
+                </div
+            </div>
+        </div>    
     </div>
 </body>
 </html>
