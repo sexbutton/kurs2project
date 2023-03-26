@@ -2,6 +2,11 @@ body, html {
     margin: 0;
 }
 
+.container {
+    max-width: 1920px;
+    margin: auto;
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -14,6 +19,10 @@ a {
     align-items: center;
 }
 
+.products {
+    display: flex;
+}
+
 .product {
     max-width: 320px;
     min-height: 400px;
@@ -24,4 +33,15 @@ a {
     display: inline;
     margin: 5px;
 }
+
+.auth {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.infoproduct li {
+    display: inline;
+}
+
+
 

@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'suvenir'
+    'suvenir', 
+    'authorization'
 ]
 
 MIDDLEWARE = [
@@ -120,7 +121,13 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join()
+
+LOGIN_REDIRECT_URL = '/'
+
+
+
+
+MEDIA_ROOT = f'{BASE_DIR}/media'
 
 
 
@@ -128,3 +135,9 @@ MEDIA_ROOT = os.path.join()
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SESSION_COOKIE_AGE = 60 * 60 
+
+SESSION_COOKIE_NAME = 'idkeyusers'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

@@ -23,13 +23,26 @@
                 <input type="search">
                 <button>Искать</button>
             </form>
-            <div class="regandbusket">
-                <a href="">
-                    <img src="{% static 'img/basket(32px).png' %}" alt="">
-                </a>
-                <a href="">
-                    <img src="{% static 'img/reg(32px).png' %}" alt="">
-                </a>
+            <a href="">
+                <img src="{% static 'img/basket(32px).png' %}" alt="">
+            </a>
+            <div class="auth">
+                {% if request.user.is_authenticated %}
+                    <div>
+                        Добро пожаловать на сайт {{ request.user.username }}
+                    </div>
+                    <a href="{% url 'logout' %}">
+                        <img src="{% static 'img/logout.png' %}" alt="">
+                    </a>
+                {% else %}
+                    <div>
+                        Вы не авторизированы на нашем сайте
+                        <a href="{% url 'login' %}">
+                            <img src="{% static 'img/login.png' %}" alt="">
+                        </a>
+                    </div>
+                {% endif %}
+                
             </div>
         </div>
         <div class="main">
@@ -37,19 +50,33 @@
 
             </div>
             <div class="products">
+                {% for product in product %}
                 <div class="product">
-                    <img src="{% static 'img/test.png' %}" alt="">
+                    
+                    <img src="{{ product.img.url }}" alt="" height="250" width="250">
                     <div class="infoproduct">
                         <div>
-                            Название
+                            {{ product.name }}
                         </div>
                         <div>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, deserunt.
+                            {{ product.description }}
                         </div>
+                        <div>
+                            {{ product.price }} руб
+                        </div>
+                        <ul>
+                            <li>xs</li>
+                            <li>s</li>
+                            <li>m</li>
+                            <li>l</li>
+                            <li>xl</li>
+                            <li>xxl</li>
+                        </ul>
                     </div>
                     <img src="{% static 'img/like.png' %}" alt="">
                     <img src="{% static 'img/add.png' %}" alt="">
-                </div
+                </div>
+                {% endfor %}
             </div>
         </div>    
     </div>
