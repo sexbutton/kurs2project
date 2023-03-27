@@ -29,7 +29,7 @@
             <div class="auth">
                 {% if request.user.is_authenticated %}
                     <div>
-                        Добро пожаловать на сайт {{ request.user.username }}
+                        Добро пожаловать на сайт {{ request.user.first_name }}
                     </div>
                     <a href="{% url 'logout' %}">
                         <img src="{% static 'img/logout.png' %}" alt="">
@@ -38,11 +38,13 @@
                     <div>
                         Вы не авторизированы на нашем сайте
                         <a href="{% url 'login' %}">
-                            <img src="{% static 'img/login.png' %}" alt="">
+                            <img src="{% static 'img/reg(32px).png' %}" alt="">
                         </a>
                     </div>
                 {% endif %}
-                
+                <a href="{% url 'register' %}">
+                    <img src="{% static 'img/registr.png' %}"  alt="">
+                </a>
             </div>
         </div>
         <div class="main">

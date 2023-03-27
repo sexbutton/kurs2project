@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from .forms import AuthForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
+from .forms import ExtendedRegisterForm
+from .models import Profile
 
 def authorization(request):
     if request.method == 'POST':
@@ -36,14 +38,24 @@ class LogoutView(LogoutView):
 
 def register_view(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = ExtendedRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            date_of_birth = form.cleaned_data.get('date_of_birth')
+            city = form.cleaned_data.get('city')
+            Profile.objects.create(
+                user = user,
+                city = city,
+                date_of_birth=date_of_birth
+            )
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('/')
     else:
-        form = UserCreationForm
-        return render(request, 'authorization/registration.html', {"form": form})
+        form = ExtendedRegisterForm()
+    return render(request, 'authorization/registration.html', {"form": form})
+
+def account(request):
+    return render(request, 'authorization/Account.html')
