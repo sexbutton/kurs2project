@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Status(models.Model):
     name = models.CharField(max_length=50)
@@ -13,5 +14,11 @@ class Product(models.Model):
     img = models.ImageField(upload_to='suvenir/imgproduct')
     date = models.DateTimeField()
     status = models.ForeignKey(Status, on_delete=models.CASCADE, null=True)
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_qty = models.IntegerField(null=False, blank= False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
