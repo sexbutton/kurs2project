@@ -10,15 +10,12 @@ class Status(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=200)
-    price = models.FloatField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     img = models.ImageField(upload_to='suvenir/imgproduct')
     date = models.DateTimeField()
     status = models.ForeignKey(Status, on_delete=models.CASCADE, null=True)
 
-class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    product_qty = models.IntegerField(null=False, blank= False)
-    created_at = models.DateTimeField(auto_now_add=True)
+
+    
 
 

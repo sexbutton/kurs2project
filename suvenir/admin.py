@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Status, Cart
+from .models import Product, Status
 from django.utils.safestring import mark_safe
 
 class ProductAdmin(admin.ModelAdmin):
@@ -17,4 +17,4 @@ class ProductAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Status)
-admin.site.register(Cart)
+

@@ -5,8 +5,8 @@ def main(request):
     product = Product.objects.all()
     return render(request, 'suvenir/main.html', {"product": product})
 
-def basket(request):
-    return render(request, 'suvenir/basket.html')
+def cart(request):
+    return render(request, 'suvenir/cart.html')
 
 def new(request):
     return render(request, 'suvenir/new.html')
@@ -19,3 +19,11 @@ def popular(request):
 
 def liked(request):
     return render(request, 'suvenir/liked.html')
+
+def souvenirs(request, id):
+    souvenirs = Product.objects.get(pk=id)
+    return render(request, 'suvenir/souvenirs.html', {'souvenirs':souvenirs})
+
+
+
+
