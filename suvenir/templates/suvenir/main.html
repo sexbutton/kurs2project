@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <a href=""><img src="{% static 'img/like24.png' %}" alt=""></a>
-                    <a href=""><img src="{% static 'img/add.png' %}" alt=""></a>
+                    <a href="{% url 'basket_add' product.id %}"><img src="{% static 'img/add.png' %}" alt=""></a>
                 </div>
                 {% endfor %}
             </div>

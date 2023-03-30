@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Product, Status
+from .models import Product, Category, Cart
 from django.utils.safestring import mark_safe
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["name","image_show","price","description","date", "status"]
+    list_display = ["name","image_show","price","description","date", "category"]
     
     def image_show(self, obj):
         if obj.img:
@@ -16,5 +16,6 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
-admin.site.register(Status)
+admin.site.register(Category)
+admin.site.register(Cart)
 
