@@ -1,0 +1,31 @@
+.container {
+    max-width: 1600px;
+    margin: auto;
+}
+
+.products {
+    max-width: 1000px;
+}
+
+.product {
+    display: inline;
+    margin: 5px;
+}
+
+.infoproduct {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.imgandname {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.priceandquantity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

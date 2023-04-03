@@ -16,6 +16,10 @@ class Product(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     quantity = models.PositiveIntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default= None)
+    sale = models.BooleanField(default=False)
+    popular = models.BooleanField(default=False)
+    pricesale = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    new = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Сувенир: {self.name}. Категория: {self.category.name}"

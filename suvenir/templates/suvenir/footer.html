@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer</title>
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+</head>
+<body>
+    <div class="footer">
+
+        <div class="infojob">
+            <ul>
+                <li>Стать курьером</li>
+                <li>IT-технологии</li>
+                <li>Стать продовцом</li>
+                <li>Стать поставщиком</li>
+            </ul>
+        </div>
+        <div class="infohelp">
+            <ul>
+                <li>Поддержка</li>
+                <li>Социальные сети</li>
+                <li>Благоворительность</li>
+                <li>Горячая линия</li>
+            </ul>
+        </div>
+        <div class="info">
+            <ul>
+                <li>Как оформить заказ</li>
+                <li>Возврат товаров</li>
+                <li>Отмена заказа</li>
+                <li>Безопасность</li>
+                <li>Доставка</li>
+                <li>Оплата</li>
+            </ul>
+        </div>
+    </div>
+    {% block footer %}{% endblock %}
+</body>
+</html>

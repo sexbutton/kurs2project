@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+html body {
+    margin: 0;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color:#f0570a;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.auth {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footer {
+    background-color: #f0570a;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.header li {
+    display: inline;
+    margin: 5px;
+}
