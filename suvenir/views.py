@@ -6,11 +6,27 @@ def main(request):
     return render(request, 'suvenir/main.html', {"product": product})
 
 def cart(request):
-    cart = Cart.objects.all()
-    return render(request, 'suvenir/cart.html', {"cart": cart})
+    cart = Cart.objects.filter(user = request.user)
+
+    if len(cart) > 0:
+        lencart = True
+    else:
+        lencart = False
+
+    countproduct = 0
+    for i in cart:
+        countproduct += i.quantity
+
+    fullprice = 0
+    for i in cart:
+        fullprice += i.quantity * i.product.price
+
+
+    return render(request, 'suvenir/cart.html', {"cart": cart, "lencart": lencart, "countproduct": countproduct, "fullprice": fullprice})
 
 def new(request):
-    return render(request, 'suvenir/new.html')
+    product = Product.objects.filter(new = True)
+    return render(request, 'suvenir/new.html', {'product': product})
 
 def sale(request):
     return render(request, 'suvenir/sale.html')
@@ -36,6 +52,16 @@ def cart_add(request, product_id):
         cart.quantity += 1
         cart.save()
     
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+def cart_remove(request, cart_id):
+    cart = Cart.objects.get(id = cart_id)
+    cart.delete()
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+def cart_all_remove(request):
+    cart = Cart.objects.filter(user = request.user)
+    cart.delete()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
         
 

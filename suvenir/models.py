@@ -8,6 +8,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Product(models.Model):
     name = models.CharField(max_length=20)
     description = models.CharField(max_length=200)
@@ -23,6 +24,8 @@ class Product(models.Model):
 
     def __str__(self):
         return f"Сувенир: {self.name}. Категория: {self.category.name}"
+
+
 
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

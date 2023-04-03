@@ -11,35 +11,43 @@
     <link rel="stylesheet" href="{% static 'css/cart.css' %}">
 </head>
 <body>
+    {% if lencart %}
     <div class="container">
-        <div class="products">
-            {% for i in cart %}
-            {% if request.user.username == i.user.username %}
-            <div class="product">
-                <div class="infoproduct">
-                    <div class="imgandname">
-                        <img src="{{ i.product.img.url }}" alt="" height="150" width="150">
-                        <div>{{ i.product.name }}</div>
+        <div class="cart">
+            <div class="products">
+                {% for i in cart %}
+                <div class="product">
+                    <div class="infoproduct">
+                        <div class="imgandname">
+                            <img src="{{ i.product.img.url }}" alt="" height="150" width="150">
+                            <div>{{ i.product.name }}</div>
+                        </div>
+    
+                        <div class="priceandquantity">
+                            <div>Количество: {{ i.quantity }}</div>
+                            <div>Цена: {{ i.product.price }}</div>
+                        </div>
                     </div>
-
-                    <div class="priceandquantity">
-                        <div>Количество: {{ i.quantity }}</div>
-                        <div>Цена: {{ i.product.price }}</div>
+                    <div class="control">
+                        <a href="{% url 'cart_remove' i.id %}">
+                            <img src="{% static 'img/delete.png' %}" alt="">
+                        </a>
                     </div>
                 </div>
-                <div class="control">
-                    
+                {% endfor %}
                 </div>
-            </div>
+                <div class="ordering">
+                    <div>В вашей корзине: {{ countproduct }}</div>
+                    <div>Итоговая сумма: {{ fullprice }}</div>
+                    <a href="{% url 'cart_all_remove' %}">Удалить все:<img src="{% static 'img/delete.png' %}" alt=""></a>
+                </div>
+            {% else %}
+                    <div class="clearcart">
+                        Корзина пуста
+                    </div>
             {% endif %}
-            {% endfor %}
-        </div>
-        <div class="ordering">
-
         </div>
     </div>
-    
-    
     {% endblock %}
 
     

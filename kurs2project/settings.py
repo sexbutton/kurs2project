@@ -138,7 +138,7 @@ MEDIA_ROOT = f'{BASE_DIR}/media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SESSION_COOKIE_AGE = 60 * 60 
+SESSION_COOKIE_AGE = 60 * 60 * 12
 
 SESSION_COOKIE_NAME = 'idkeyusers'
 

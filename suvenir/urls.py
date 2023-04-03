@@ -1,7 +1,7 @@
 from django.urls import path, include
 from suvenir.views import main
 from authorization.views import LoginView, LogoutView, register_view
-from .views import cart, new, sale, popular, liked, souvenirs, cart_add
+from .views import cart, new, sale, popular, liked, souvenirs, cart_add, cart_remove, cart_all_remove
 
 
 
@@ -17,5 +17,7 @@ urlpatterns = [
     path("popular/", popular, name='popular'),
     path("liked/", liked, name='liked'),
     path("souvenirs/<int:id>", souvenirs, name='souvenirs'),
-    path("cart/add/<int:product_id>/", cart_add, name='basket_add'),
+    path("cart/add/<int:product_id>/", cart_add, name='cart_add'),
+    path("cart/remove/<int:cart_id>/", cart_remove, name='cart_remove'),
+    path("cart/all_remove/", cart_all_remove, name='cart_all_remove'),
 ]

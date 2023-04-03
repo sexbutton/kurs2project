@@ -58,4 +58,5 @@ def register_view(request):
     return render(request, 'authorization/registration.html', {"form": form})
 
 def account(request):
-    return render(request, 'authorization/Account.html')
+    information = Profile.objects.all()
+    return render(request, 'authorization/Account.html', {"info": information})
