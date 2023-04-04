@@ -70,9 +70,21 @@
                             <div class="productname">
                                 {{ product.name }}
                             </div>
+                            {% if product.pricesale != 0 %}
                             <div class="productprice">
-                                {{ product.price }} руб 
+                               Старая цена: {{ product.price }} руб 
                             </div>
+                            <div class="productprice">
+                               Новая цена: {{ product.pricesale }} руб 
+                            </div>
+                            {% else %}
+                            <div class="productprice">
+                                Цена: {{ product.price }} руб 
+                            </div>
+                            <div class="productprice">
+                                <br>
+                            </div>
+                            {% endif %}
                         <div></div>
                     </div>
                     <a href=""><img src="{% static 'img/like24.png' %}" alt=""></a>

@@ -3,6 +3,7 @@
 html body {
     margin: 0;
     font-family: 'Nunito Sans', sans-serif;
+    color: #a7cbd5;
 }
 
 .header {
@@ -10,12 +11,13 @@ html body {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color:#f0570a;
+    background-color:#362c36;
+    color: #a7cbd5;;
 }
 
 a {
     text-decoration: none;
-    color: black;
+    color: #a7cbd5;
 }
 
 .auth {
@@ -25,7 +27,7 @@ a {
 }
 
 .footer {
-    background-color: #f0570a;
+    background-color: #362c36;
     display: flex;
     align-items: center;
     justify-content:center;
@@ -34,4 +36,5 @@ a {
 .header li {
     display: inline;
     margin: 5px;
+    color: #a7cbd5;
 }

@@ -1,4 +1,5 @@
-{% extends 'suvenir/header.html' %}
+{% extends 'suvenir/base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,9 +7,83 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Распродажа</title>
+    {% block content %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-    {% block content %}
+    
+    <div class="container">
+        
+        <div class="main">
+
+            <div class="filter">
+                <div class="category">
+                    <ul>
+                        <li><a href="">Картины</a></li>
+                        <li><a href="">Розыгрыши</a></li>
+                        <li><a href="">Посуда</a></li>
+                        <li><a href="">Игрушки</a></li>
+                        <li><a href="">Одежда</a></li>
+                    </ul>
+                </div>
+
+                <div class="stars">
+                    <div>
+                        <input type="checkbox" value="123123" name="5stars" id=""> 
+                        <label for="5stars">5 звезд</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" value="123123" name="5stars" id=""> 
+                        <label for="5stars">больше 4</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" value="123123" name="5stars" id=""> 
+                        <label for="5stars">больше 3</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" value="123123" name="5stars" id=""> 
+                        <label for="5stars">больше 2</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" value="123123" name="5stars" id=""> 
+                        <label for="5stars">больше 1</label>
+                    </div>
+                    
+                    
+                </div>
+                <div class="price">
+                    Цена:
+                    <br>
+                    <input type="range" min="0" max="100" step="1" value="50">
+                </div>
+                
+            </div>
+                <div class="products">
+                {% for product in product %}
+                    <div class="product">
+                        <div class="image">
+                            <a href="souvenirs/{{ product.id }}"><img src="{{ product.img.url }}" alt="" height="250" width="250"></a>
+                        </div>
+                        <div class="infoproduct">
+                            <div class="productname">
+                                {{ product.name }}
+                            </div>
+                            <div class="productprice">
+                               Старая цена: {{ product.price }} руб 
+                            </div>
+                            <div>
+                                Новая цена: {{ product.pricesale }} руб
+                            </div>
+                        <div></div>
+                    </div>
+                    <a href=""><img src="{% static 'img/like24.png' %}" alt=""></a>
+                    <a href="{% url 'cart_add' product.id %}"><img src="{% static 'img/add.png' %}" alt=""></a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>    
+        
+    </div>
 
     {% endblock %}
 </body>

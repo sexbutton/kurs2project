@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
-from .models import Product, Cart
+from .models import Product, Cart, Category
 
 def main(request):
     product = Product.objects.all()
@@ -29,10 +29,12 @@ def new(request):
     return render(request, 'suvenir/new.html', {'product': product})
 
 def sale(request):
-    return render(request, 'suvenir/sale.html')
+    product = Product.objects.filter(sale = True)
+    return render(request, 'suvenir/sale.html', {"product": product})
 
 def popular(request):
-    return render(request, 'suvenir/popular.html')
+    product = Product.objects.filter(popular = True)
+    return render(request, 'suvenir/popular.html', {"product": product})
 
 def liked(request):
     return render(request, 'suvenir/liked.html')
@@ -64,6 +66,9 @@ def cart_all_remove(request):
     cart.delete()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
         
+def category(request):
+    category = Category.objects.all()
+    return render(request, 'suvenir/category.html', {"category": category})
 
 
 

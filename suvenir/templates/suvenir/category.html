@@ -1,0 +1,27 @@
+{% extends 'suvenir/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% block content %}
+</head>
+<body>
+    
+    <div class="container">
+        <div class="category">
+            {% for i in category %}
+            <div class="card">
+                <a href=""><img src="{{ i.img.url }}" alt=""></a>
+                <a href="">{{ i.name }}</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% endblock %}
+</body>
+</html>
