@@ -8,15 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% block content %}
+    <link rel="stylesheet" href="{% static 'css/category.css' %}">
 </head>
 <body>
     
     <div class="container">
         <div class="category">
-            {% for i in category %}
+            {% for category in category %}
             <div class="card">
-                <a href=""><img src="{{ i.img.url }}" alt=""></a>
-                <a href="">{{ i.name }}</a>
+                <a href="/category/{{ category.url }}"><img src="{{ category.img.url }}" height="200px" width="200px" alt=""></a>
+                <a href="/category/{{ category.url }}">{{ category.name }}</a>
             </div>
             {% endfor %}
         </div>

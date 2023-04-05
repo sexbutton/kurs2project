@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 from .models import Product, Cart, Category
+from django.views.generic.list import ListView
 
 def main(request):
     product = Product.objects.all()
@@ -39,8 +40,9 @@ def popular(request):
 def liked(request):
     return render(request, 'suvenir/liked.html')
 
-def souvenirs(request, id):
+def souvenirs(request, id , slug):
     souvenirs = Product.objects.get(pk=id)
+    category = Category.objects.filter(url = slug)[0]
     return render(request, 'suvenir/souvenirs.html', {'souvenirs':souvenirs})
 
 def cart_add(request, product_id):
@@ -70,6 +72,9 @@ def category(request):
     category = Category.objects.all()
     return render(request, 'suvenir/category.html', {"category": category})
 
+class FilterProduct(ListView):
+    def get(self):
+        pass
 
 
 

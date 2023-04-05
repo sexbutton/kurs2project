@@ -16,9 +16,9 @@ urlpatterns = [
     path("sale/", sale, name='sale'),
     path("popular/", popular, name='popular'),
     path("liked/", liked, name='liked'),
-    path("souvenirs/<int:id>", souvenirs, name='souvenirs'),
+    path("category/<str:slug>/souvenirs/<int:id>", souvenirs, name='souvenirs'),
     path("cart/add/<int:product_id>/", cart_add, name='cart_add'),
     path("cart/remove/<int:cart_id>/", cart_remove, name='cart_remove'),
     path("cart/all_remove/", cart_all_remove, name='cart_all_remove'),
-    path("category/", category, name='category'),
+    path("category/", include('category.urls')),
 ]

@@ -1,3 +1,5 @@
+{% extends 'suvenir/base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% block content %}
+    <link rel="stylesheet" href="{% static 'css/souvenirs.css' %}">
 </head>
 <body>
-    <h1>{{ souvenirs.name }}</h1>
-    <img src="{{ souvenirs.img.url }}" alt="">
+    <div class="card">
+        <h1>{{ souvenirs.name }}</h1>
+    <img src="{{ souvenirs.img.url }}" height="300" width="300" alt="">
     <h2>{{ souvenirs.description }}</h2>
     <h2>{{ souvenirs.price }}</h2>
+    <a href="{% url 'cart_add' souvenirs.id %}">
+        <img src="{% static 'img/add_cart(128px).png' %}" alt="">
+    </a>
+    </div>
+    
+    {% endblock %}
+    
 </body>
 </html>

@@ -33,6 +33,7 @@ a {
     background-color: #71777d;
     display: inline-block;
     border-radius: 20px;
+    padding: 7px;
 }
 
 .products {
@@ -69,6 +70,15 @@ a {
 
 .productprice {
     margin: 5px;
+}
+
+.pricefilter {
+    display: flex;
+}
+
+.typeproduct {
+    display: flex;
+    flex-direction: column;
 }
 
 

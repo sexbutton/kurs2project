@@ -1,3 +1,7 @@
+body {
+    background-color: #4d4c59;
+}
+
 .container {
     max-width: 1600px;
     margin: auto;
@@ -17,7 +21,7 @@
     flex-direction:row;
     justify-content: space-around;
     margin: 5px;
-    background-color: brown;
+    background-color: #71777d;
 }
 
 .control {
@@ -54,7 +58,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: aqua;
+    background-color: #71777d;
 }
 
 .ordering a {

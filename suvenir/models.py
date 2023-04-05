@@ -5,6 +5,13 @@ class Category(models.Model):
     name = models.CharField(max_length=100 , unique=True)
     description = models.CharField(max_length=1000, null= True, blank=True)
     img = models.ImageField(upload_to='suvenir/imgcategory', null=True)
+    url = models.SlugField(unique=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+class Type(models.Model):
+    name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
@@ -22,6 +29,7 @@ class Product(models.Model):
     popular = models.BooleanField(default=False)
     pricesale = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     new = models.BooleanField(default=False)
+    type = models.ForeignKey(Type, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"Сувенир: {self.name}. Категория: {self.category.name}"
