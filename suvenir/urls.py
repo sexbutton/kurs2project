@@ -1,5 +1,4 @@
 from django.urls import path, include
-from suvenir.views import main
 from authorization.views import LoginView, LogoutView, register_view
 from .views import *
 
@@ -7,8 +6,8 @@ from .views import *
 
 
 urlpatterns = [
-    path("", main, name="main"),
-    path("filter/", FilterProduct.as_view(), name = 'filter'),
+    path("", MainMethod.as_view(), name="main"),
+    path("filter/", getfilter, name = 'filter'),
     path("users/login/", LoginView.as_view(), name='login'),
     path("users/logout/", LogoutView.as_view(), name='logout'),
     path("users/register/", register_view, name='register'),

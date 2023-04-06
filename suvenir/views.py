@@ -1,10 +1,16 @@
 from django.shortcuts import render, HttpResponseRedirect
-from .models import Product, Cart, Category
+from .models import Product, Cart, Category, Type
 from django.views.generic.list import ListView
 
-def main(request):
-    product = Product.objects.all()
-    return render(request, 'suvenir/main.html', {"product": product})
+
+class MainMethod(ListView):
+
+    def get(self, request):
+        product = Product.objects.all()
+        return render(request, 'suvenir/main.html', {"product": product})
+    
+    def post(self, request):
+        pass
 
 def cart(request):
     cart = Cart.objects.filter(user = request.user)
@@ -72,11 +78,10 @@ def category(request):
     category = Category.objects.all()
     return render(request, 'suvenir/category.html', {"category": category})
 
-class FilterProduct(ListView):
-
-    def get(self):
-        filter = Product.objects.filter(type = self.request.GET.getlist("filter"))
-        return filter
+def getfilter(request):
+    filter = Product.objects.filter(type__in  = Type.objects.filter(name__in = request.GET.getlist("filter")))
+    print(filter)
+    return filter
 
         
 
