@@ -18,32 +18,36 @@
         <div class="main">
             <form action="">
                 <div class="filter">
-                
-                    <div class="typeproduct">
-                        <div>
-                            <input type="checkbox" name="" id="">Кружки
+                    <form action="{% url 'filter' %}" method="get">
+                        <div class="typeproduct">
+                            <div>
+                                <input type="checkbox" name="filter" id="" value="Кружки">Кружки
+                            </div>
+                            <div>
+                                <input type="checkbox" name="filter" id="" value="Стаканы">Стаканы
+                            </div>
+                            <div>
+                                <input type="checkbox" name="filter" id="" value="Туалетная бумага">Туалетная бумага
+                            </div>
+                            <div>
+                                <input type="checkbox" name="filter" id="" value="Футболки">Футболки
+                            </div>
                         </div>
-                        <div>
-                            <input type="checkbox" name="" id="">Стаканы
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">Туалетная бумага
-                        </div>
-                        <div>
-                            <input type="checkbox" name="" id="">Футболки
-                        </div>
-                    </div>
-    
-                    <div class="price">
-                        Цена:
-                        <br>
-                        <div class="pricefilter">
-                            0
-                            <input type="range" min="0" max="100" step="1" value="50">
-                            100000
+                        <button type="submit">Отправить</button>
+                    </form>    
+                        <div class="price">
+                            Цена:
+                            <br>
+                            <div class="pricefilter">
+                                0
+                                <input type="range" min="0" max="100" step="1" value="50">
+                                100000
+                            </div>
+                            
                         </div>
                         
-                    </div>
+                    
+                    
                     
                 </div>
             </form>

@@ -73,8 +73,12 @@ def category(request):
     return render(request, 'suvenir/category.html', {"category": category})
 
 class FilterProduct(ListView):
+
     def get(self):
-        pass
+        filter = Product.objects.filter(type = self.request.GET.getlist("filter"))
+        return filter
+
+        
 
 
 
