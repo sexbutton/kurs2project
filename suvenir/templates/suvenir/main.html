@@ -18,7 +18,7 @@
         <div class="main">
             <form action="">
                 <div class="filter">
-                    <form action="{% url 'filter' %}" method="get">
+                    <form action="{% url 'main' %}" method="get">
                         <div class="typeproduct">
                             <div>
                                 <input type="checkbox" name="filter" id="" value="Кружки">Кружки
@@ -34,24 +34,25 @@
                             </div>
                         </div>
                         <button type="submit">Отправить</button>
-                    </form>    
+                        
                         <div class="price">
                             Цена:
                             <br>
                             <div class="pricefilter">
                                 0
-                                <input type="range" min="0" max="100" step="1" value="50">
-                                100000
+                                <input name="price" type="range" min="0" max="200000" step="1" value="200000">
+                                200000
                             </div>
                             
                         </div>
+                    </form>
                         
                     
                     
                     
                 </div>
             </form>
-            
+                {% if lenfiltertype == 0 %}
                 <div class="products">
                 {% for product in product %}
                     <div class="product">
@@ -83,6 +84,39 @@
                     <a href="{% url 'cart_add' product.id %}"><img src="{% static 'img/add.png' %}" alt=""></a>
                 </div>
                 {% endfor %}
+                {% else %}
+                <div class="products">
+                    {% for product in filtertype %}
+                        <div class="product">
+                            <div class="image">
+                                <a href="category/{{ product.category.url }}/souvenirs/{{ product.id }}"><img src="{{ product.img.url }}" alt="" height="250" width="250"></a>
+                            </div>
+                            <div class="infoproduct">
+                                <div class="productname">
+                                    {{ product.name }}
+                                </div>
+                                {% if product.pricesale != 0 %}
+                                <div class="productprice">
+                                   Старая цена: {{ product.price }} руб 
+                                </div>
+                                <div class="productprice">
+                                   Новая цена: {{ product.pricesale }} руб 
+                                </div>
+                                {% else %}
+                                <div class="productprice">
+                                    Цена: {{ product.price }} руб 
+                                </div>
+                                <div class="productprice">
+                                    <br>
+                                </div>
+                                {% endif %}
+                            <div></div>
+                        </div>
+                        <a href=""><img src="{% static 'img/like24.png' %}" alt=""></a>
+                        <a href="{% url 'cart_add' product.id %}"><img src="{% static 'img/add.png' %}" alt=""></a>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
             </div>
         </div>    
         

@@ -7,7 +7,10 @@ class MainMethod(ListView):
 
     def get(self, request):
         product = Product.objects.all()
-        return render(request, 'suvenir/main.html', {"product": product})
+        filter = Product.objects.filter(type__in  = Type.objects.filter(name__in = request.GET.getlist("filter"))) | Product.objects.filter(price__lte = request.GET.get("price"))
+        lenfiltertype = len(filter)
+        print(filter)
+        return render(request, 'suvenir/main.html', {"product": product, "filtertype": filter, "lenfiltertype": lenfiltertype})
     
     def post(self, request):
         pass
@@ -78,10 +81,7 @@ def category(request):
     category = Category.objects.all()
     return render(request, 'suvenir/category.html', {"category": category})
 
-def getfilter(request):
-    filter = Product.objects.filter(type__in  = Type.objects.filter(name__in = request.GET.getlist("filter")))
-    print(filter)
-    return filter
+
 
         
 
