@@ -6,11 +6,18 @@ from django.views.generic.list import ListView
 class MainMethod(ListView):
 
     def get(self, request):
-        product = Product.objects.all()
-        filter = Product.objects.filter(type__in  = Type.objects.filter(name__in = request.GET.getlist("filter"))) | Product.objects.filter(price__lte = request.GET.get("price"))
-        lenfiltertype = len(filter)
-        print(filter)
-        return render(request, 'suvenir/main.html', {"product": product, "filtertype": filter, "lenfiltertype": lenfiltertype})
+        if len(request.GET) == 0:
+            filterflag = True
+            product = Product.objects.all()
+            filter = None
+            lenfiltertype = 0
+            return render(request, 'suvenir/main.html', {"product": product, "filtertype": filter, "lenfiltertype": lenfiltertype, "filterflag": filterflag})
+        else:
+            product = Product.objects.all()
+            filter = Product.objects.filter(type__in  = Type.objects.filter(name__in = request.GET.getlist("filter"))) & Product.objects.filter(price__lte = request.GET.get("price"))
+            lenfiltertype = len(filter)
+            print(filter)
+            return render(request, 'suvenir/main.html', {"product": product, "filtertype": filter, "lenfiltertype": lenfiltertype})
     
     def post(self, request):
         pass

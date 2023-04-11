@@ -54,6 +54,8 @@
             </form>
                 {% if lenfiltertype == 0 %}
                 <div class="products">
+                    {% if flagfilter  %}
+                        <h1>Товаров не найдено</h1>
                 {% for product in product %}
                     <div class="product">
                         <div class="image">
