@@ -14,7 +14,9 @@
 <body>
     
     <div class="container">
-        
+        {% if flagfilter %}
+                <h1>Товары не найдены</h1>
+        {% endif %}
         <div class="main">
             <form action="">
                 <div class="filter">
@@ -52,43 +54,41 @@
                     
                 </div>
             </form>
-                {% if lenfiltertype == 0 %}
+                {% if lenfilter > 0 %}
                 <div class="products">
-                    {% if flagfilter  %}
-                        <h1>Товаров не найдено</h1>
-                {% for product in product %}
-                    <div class="product">
-                        <div class="image">
-                            <a href="category/{{ product.category.url }}/souvenirs/{{ product.id }}"><img src="{{ product.img.url }}" alt="" height="250" width="250"></a>
+                    {% for product in filter %}
+                        <div class="product">
+                            <div class="image">
+                                <a href="category/{{ product.category.url }}/souvenirs/{{ product.id }}"><img src="{{ product.img.url }}" alt="" height="250" width="250"></a>
+                            </div>
+                            <div class="infoproduct">
+                                <div class="productname">
+                                    {{ product.name }}
+                                </div>
+                                {% if product.pricesale != 0 %}
+                                <div class="productprice">
+                                   Старая цена: {{ product.price }} руб 
+                                </div>
+                                <div class="productprice">
+                                   Новая цена: {{ product.pricesale }} руб 
+                                </div>
+                                {% else %}
+                                <div class="productprice">
+                                    Цена: {{ product.price }} руб 
+                                </div>
+                                <div class="productprice">
+                                    <br>
+                                </div>
+                                {% endif %}
+                            <div></div>
                         </div>
-                        <div class="infoproduct">
-                            <div class="productname">
-                                {{ product.name }}
-                            </div>
-                            {% if product.pricesale != 0 %}
-                            <div class="productprice">
-                               Старая цена: {{ product.price }} руб 
-                            </div>
-                            <div class="productprice">
-                               Новая цена: {{ product.pricesale }} руб 
-                            </div>
-                            {% else %}
-                            <div class="productprice">
-                                Цена: {{ product.price }} руб 
-                            </div>
-                            <div class="productprice">
-                                <br>
-                            </div>
-                            {% endif %}
-                        <div></div>
+                        <a href=""><img src="{% static 'img/like24.png' %}" alt=""></a>
+                        <a href="{% url 'cart_add' product.id %}"><img src="{% static 'img/add.png' %}" alt=""></a>
                     </div>
-                    <a href=""><img src="{% static 'img/like24.png' %}" alt=""></a>
-                    <a href="{% url 'cart_add' product.id %}"><img src="{% static 'img/add.png' %}" alt=""></a>
-                </div>
-                {% endfor %}
+                    {% endfor %}
                 {% else %}
                 <div class="products">
-                    {% for product in filtertype %}
+                    {% for product in product %}
                         <div class="product">
                             <div class="image">
                                 <a href="category/{{ product.category.url }}/souvenirs/{{ product.id }}"><img src="{{ product.img.url }}" alt="" height="250" width="250"></a>

@@ -6,18 +6,25 @@ from django.views.generic.list import ListView
 class MainMethod(ListView):
 
     def get(self, request):
-        if len(request.GET) == 0:
-            filterflag = True
             product = Product.objects.all()
-            filter = None
-            lenfiltertype = 0
-            return render(request, 'suvenir/main.html', {"product": product, "filtertype": filter, "lenfiltertype": lenfiltertype, "filterflag": filterflag})
-        else:
-            product = Product.objects.all()
-            filter = Product.objects.filter(type__in  = Type.objects.filter(name__in = request.GET.getlist("filter"))) & Product.objects.filter(price__lte = request.GET.get("price"))
-            lenfiltertype = len(filter)
+            flagfilter = False
+            if len(request.GET.getlist("filter")) == 0:
+                filtertype = Product.objects.filter(type__in  = Type.objects.filter(name__in = ['Кружки', 'Стаканы', 'Туалетная бумага', 'Футболки']))
+            else:
+                filtertype = Product.objects.filter(type__in  = Type.objects.filter(name__in = request.GET.getlist("filter")))
+            if request.GET.get("price") == None:
+                filterprice = Product.objects.filter(price__lte = 200000)
+            else:
+                filterprice = Product.objects.filter(price__lte = request.GET.get("price"))
+
+            filter = filtertype & filterprice
+            lenfilter = len(filter)
+
+            if lenfilter == 0:
+                flagfilter = True
+
             print(filter)
-            return render(request, 'suvenir/main.html', {"product": product, "filtertype": filter, "lenfiltertype": lenfiltertype})
+            return render(request, 'suvenir/main.html', {"product": product, "lenfilter": lenfilter, "filter": filter, "flagfilter": flagfilter})
     
     def post(self, request):
         pass
