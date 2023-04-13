@@ -20,4 +20,5 @@ urlpatterns = [
     path("cart/remove/<int:cart_id>/", cart_remove, name='cart_remove'),
     path("cart/all_remove/", cart_all_remove, name='cart_all_remove'),
     path("category/", include('category.urls')),
+    path('createform/', createform, name = 'createform')
 ]

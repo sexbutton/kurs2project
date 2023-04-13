@@ -1,6 +1,8 @@
-from django.shortcuts import render, HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, HttpResponseRedirect
 from .models import Product, Cart, Category, Type
 from django.views.generic.list import ListView
+import openpyxl
+
 
 
 class MainMethod(ListView):
@@ -37,9 +39,6 @@ class MainMethod(ListView):
         pass
 
 def cart(request):
-    if request.user == "AnonymousUser":
-        return HttpResponse("Сначала зарегестрируетесь пожалуйста!!")
-    else:
         cart = Cart.objects.filter(user = request.user)
 
         if len(cart) > 0:
@@ -103,6 +102,15 @@ def cart_all_remove(request):
 def category(request):
     category = Category.objects.all()
     return render(request, 'suvenir/category.html', {"category": category})
+
+def createform(request):
+    path = r'C:\Users\Жулик\Desktop\kurs2project\suvenir\static\testing.xlsx'
+    open = openpyxl.load_workbook(path)
+    file = open["data"]
+    
+    open.save(path)
+
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
 
