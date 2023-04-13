@@ -23,8 +23,8 @@
             <li><a href="{% url 'sale' %}">Распродажа</a></li>
             <li><a href="{% url 'category' %}">Категории</a></li>
         </ul>
-        <form action="">
-            <input type="search">
+        <form action="{% url 'main' %}" method="get">
+            <input type="search" name="search">
             <button>Искать</button>
         </form>
         <div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, HttpResponse
 from .models import Product, Cart, Category, Type
 from django.views.generic.list import ListView
 
@@ -6,7 +6,14 @@ from django.views.generic.list import ListView
 class MainMethod(ListView):
 
     def get(self, request):
+            print(request.user)
             product = Product.objects.all()
+            if request.GET.get("search") == None:
+                pass
+            else:    
+                filtersearch = Product.objects.filter(name__icontains = request.GET.get("search"))
+                print(filtersearch)
+
             flagfilter = False
             if len(request.GET.getlist("filter")) == 0:
                 filtertype = Product.objects.filter(type__in  = Type.objects.filter(name__in = ['Кружки', 'Стаканы', 'Туалетная бумага', 'Футболки']))
@@ -30,23 +37,25 @@ class MainMethod(ListView):
         pass
 
 def cart(request):
-    cart = Cart.objects.filter(user = request.user)
-
-    if len(cart) > 0:
-        lencart = True
+    if request.user == "AnonymousUser":
+        return HttpResponse("Сначала зарегестрируетесь пожалуйста!!")
     else:
-        lencart = False
+        cart = Cart.objects.filter(user = request.user)
 
-    countproduct = 0
-    for i in cart:
-        countproduct += i.quantity
+        if len(cart) > 0:
+            lencart = True
+        else:
+            lencart = False
 
-    fullprice = 0
-    for i in cart:
-        fullprice += i.quantity * i.product.price
+        countproduct = 0
+        for i in cart:
+            countproduct += i.quantity
 
+        fullprice = 0
+        for i in cart:
+            fullprice += i.quantity * i.product.price
 
-    return render(request, 'suvenir/cart.html', {"cart": cart, "lencart": lencart, "countproduct": countproduct, "fullprice": fullprice})
+        return render(request, 'suvenir/cart.html', {"cart": cart, "lencart": lencart, "countproduct": countproduct, "fullprice": fullprice})
 
 def new(request):
     product = Product.objects.filter(new = True)
