@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponseRedirect
 from .models import Product, Cart, Category, Type
 from django.views.generic.list import ListView
 import openpyxl
+from django.contrib.auth.models import User
+import datetime
 
 
 
@@ -104,11 +106,17 @@ def category(request):
     return render(request, 'suvenir/category.html', {"category": category})
 
 def createform(request):
-    path = r'C:\Users\Жулик\Desktop\kurs2project\suvenir\static\testing.xlsx'
-    open = openpyxl.load_workbook(path)
-    file = open["data"]
+    order = Cart.objects.filter(user = User.objects.get(username = request.user))
+    print(order)
+    for i in order:
+        path = 'suvenir/static/orders.xlsx'
+        open = openpyxl.load_workbook(path)
+        file = open["data"]
+        file.append([i.id, i.user.id, i.user.username, i.product.name, i.quantity, str(datetime.datetime.now()) , str(i.created_timestamp)])
+        open.save(path)
+        open.close()
     
-    open.save(path)
+    cart_all_remove(request)
 
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
