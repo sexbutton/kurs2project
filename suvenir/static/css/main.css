@@ -4,20 +4,27 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Nunito Sans', sans-serif;
-    background-color: #4d4c59;
+    background-color: #ff8298;
 }
 
 .container {
     max-width: 1600px;
     margin: auto;
+    margin-top: 110px;
 }
 
 a {
     text-decoration: none;
-    color: #a7cbd5;
+    color: #362c36;
 }
 
-
+input[type=range]  {
+    width: 200px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    scrollbar-color: #121212 #121212 ;
+  }
 
 .main {
     display: flex;
@@ -30,7 +37,7 @@ a {
     max-height: 800px;
     height: 800px;
     width: 500px;
-    background-color: #71777d;
+    background-color: #A0A0A0;
     display: inline-block;
     border-radius: 20px;
     padding: 7px;
@@ -43,7 +50,7 @@ a {
 }
 
 .product {
-    background-color: #f7f6f0;
+    background-color: #A0A0A0;
     display: inline-block;
     max-width: 320px;
     min-height: 417px;

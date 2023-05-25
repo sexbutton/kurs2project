@@ -3,6 +3,7 @@
 .category{
     display: flex;
     justify-content: space-around;
+    margin-top: 110px;
 }
 
 .card {

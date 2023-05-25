@@ -10,32 +10,13 @@ import datetime
 class MainMethod(ListView):
 
     def get(self, request):
-            print(request.user)
             product = Product.objects.all()
-            if request.GET.get("search") == None:
-                pass
-            else:    
-                filtersearch = Product.objects.filter(name__icontains = request.GET.get("search"))
-                print(filtersearch)
 
-            flagfilter = False
-            if len(request.GET.getlist("filter")) == 0:
-                filtertype = Product.objects.filter(type__in  = Type.objects.filter(name__in = ['Кружки', 'Стаканы', 'Туалетная бумага', 'Футболки']))
-            else:
-                filtertype = Product.objects.filter(type__in  = Type.objects.filter(name__in = request.GET.getlist("filter")))
             if request.GET.get("price") == None:
-                filterprice = Product.objects.filter(price__lte = 200000)
-            else:
+                return render(request, 'suvenir/main.html', {"product": product})
+            elif request.GET.get("price") != None:
                 filterprice = Product.objects.filter(price__lte = request.GET.get("price"))
-
-            filter = filtertype & filterprice
-            lenfilter = len(filter)
-
-            if lenfilter == 0:
-                flagfilter = True
-
-            print(filter)
-            return render(request, 'suvenir/main.html', {"product": product, "lenfilter": lenfilter, "filter": filter, "flagfilter": flagfilter})
+                return render(request, 'suvenir/main.html', {"product": filterprice})
     
     def post(self, request):
         pass
@@ -60,15 +41,28 @@ def cart(request):
 
 def new(request):
     product = Product.objects.filter(new = True)
-    return render(request, 'suvenir/new.html', {'product': product})
+    if request.GET.get("price") == None:
+        return render(request, 'suvenir/new.html', {'product': product})
+    elif request.GET.get("price") != None:
+        product = Product.objects.filter(price__lte = request.GET.get("price"))
+        return render(request, 'suvenir/new.html', {"product": product})
+    
 
 def sale(request):
     product = Product.objects.filter(sale = True)
-    return render(request, 'suvenir/sale.html', {"product": product})
+    if request.GET.get("price") == None:
+        return render(request, 'suvenir/sale.html', {'product': product})
+    elif request.GET.get("price") != None:
+        product = Product.objects.filter(price__lte = request.GET.get("price"))
+        return render(request, 'suvenir/sale.html', {"product": product})
 
 def popular(request):
     product = Product.objects.filter(popular = True)
-    return render(request, 'suvenir/popular.html', {"product": product})
+    if request.GET.get("price") == None:
+        return render(request, 'suvenir/popular.html', {'product': product})
+    elif request.GET.get("price") != None:
+        product = Product.objects.filter(price__lte = request.GET.get("price"))
+        return render(request, 'suvenir/popular.html', {"product": product})
 
 def liked(request):
     return render(request, 'suvenir/liked.html')

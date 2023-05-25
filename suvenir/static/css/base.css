@@ -3,9 +3,8 @@
 html body {
     margin: 0;
     font-family: 'Nunito Sans', sans-serif;
-    color: #a7cbd5;
-    background-color: #4d4c59;
-    
+    color: wheat;
+    background-color: #333333    
 }
 
 .header {
@@ -13,13 +12,17 @@ html body {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color:#362c36;
-    color: #a7cbd5;;
+    background-color: #A0A0A0;
+    color: #362c36;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
 }
 
 a {
     text-decoration: none;
-    color: #a7cbd5;
+    color: wheat;
 }
 
 .auth {
@@ -29,7 +32,7 @@ a {
 }
 
 .footer {
-    background-color: #362c36;
+    background-color: #A0A0A0;
     display: flex;
     align-items: center;
     justify-content:center;
@@ -39,4 +42,8 @@ a {
     display: inline;
     margin: 5px;
     color: #a7cbd5;
+}
+
+#footer-rolls{
+    text-align: center;
 }

@@ -16,52 +16,25 @@
         <div class="main">
 
             <div class="filter">
-                <div class="category">
-                    <ul>
-                        <li><a href="">Картины</a></li>
-                        <li><a href="">Розыгрыши</a></li>
-                        <li><a href="">Посуда</a></li>
-                        <li><a href="">Игрушки</a></li>
-                        <li><a href="">Одежда</a></li>
-                    </ul>
-                </div>
-
-                <div class="stars">
-                    <div>
-                        <input type="checkbox" value="123123" name="5stars" id=""> 
-                        <label for="5stars">5 звезд</label>
+                <form action="{% url 'sushiandrolls' %}" method="get">
+                    <div class="price">
+                        Цена:
+                        <br>
+                        <div class="pricefilter">
+                            0
+                            <input name="price" type="range" min="0" max="5000" step="1" value="5000" checked>
+                            5000
+                        </div>
                     </div>
-                    <div>
-                        <input type="checkbox" value="123123" name="5stars" id=""> 
-                        <label for="5stars">больше 4</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" value="123123" name="5stars" id=""> 
-                        <label for="5stars">больше 3</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" value="123123" name="5stars" id=""> 
-                        <label for="5stars">больше 2</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" value="123123" name="5stars" id=""> 
-                        <label for="5stars">больше 1</label>
-                    </div>
-                    
-                    
-                </div>
-                <div class="price">
-                    Цена:
-                    <br>
-                    <input type="range" min="0" max="100" step="1" value="50">
-                </div>
+                    <button type="submit">Отправить</button>
+                </form>
                 
             </div>
                 <div class="products">
                 {% for product in product %}
                     <div class="product">
                         <div class="image">
-                            <a href="souvenirs/{{ product.id }}"><img src="{{ product.img.url }}" alt="" height="250" width="250"></a>
+                            <a href="category/{{ product.category.url }}/souvenirs/{{ product.id }}"><img src="{{ product.img.url }}" alt="" height="250" width="250"></a>
                         </div>
                         <div class="infoproduct">
                             <div class="productname">

@@ -1,31 +1,44 @@
 from django.shortcuts import render
 from suvenir.models import Product, Category
+from django.db.models import Q
 
-
-def toys(request):
-    category = Category.objects.filter(name = "Игрушки")[0]
-    toys = Product.objects.filter(category = category)
-    return render(request, 'category/toys.html', {"product": toys})
-
-def paintings(request):
-    category = Category.objects.filter(name = "Картины")[0]
+def sets(request):
+    category = Category.objects.filter(name = "Сеты")[0]
     paintings = Product.objects.filter(category = category)
-    return render(request, 'category/paintings.html', {"product": paintings})
+    if request.GET.get("price") == None:
+        return render(request, 'category/sets.html', {'product': paintings})
+    elif request.GET.get("price") != None:
+        paintings = Product.objects.filter(Q(price__lte = request.GET.get("price")) & Q(category = category))
+        return render(request, 'category/sets.html', {"product": paintings})
+    
 
-def joke(request):
-    category = Category.objects.filter(name = "Розыгрыши")[0]
+def sushiandrolls(request):
+    category = Category.objects.filter(name = "Роллы и Суши")[0]
     joke = Product.objects.filter(category = category)
-    return render(request, 'category/joke.html', {"product": joke})
+    if request.GET.get("price") == None:
+        return render(request, 'category/sushiandrolls.html', {'product': joke})
+    elif request.GET.get("price") != None:
+        joke = Product.objects.filter(Q(price__lte = request.GET.get("price")) & Q(category = category))
+        return render(request, 'category/sushiandrolls.html', {"product": joke})
 
-def dishes(request):
-    category = Category.objects.filter(name = "Посуда")[0]
+def lunchandcombo(request):
+    category = Category.objects.filter(name = "Ланчи и комбо")[0]
     dishes = Product.objects.filter(category = category)
-    return render(request, 'category/dishes.html', {"product": dishes})
+    if request.GET.get("price") == None:
+        return render(request, 'category/lunchandcombo.html', {'product': dishes})
+    elif request.GET.get("price") != None:
+        dishes = Product.objects.filter(Q(price__lte = request.GET.get("price")) & Q(category = category))
+        return render(request, 'category/lunchandcombo.html', {"product": dishes})
 
-def cloth(request):
-    category = Category.objects.filter(name = "Одежда")[0]
+def drinks(request):
+    category = Category.objects.filter(name = "Напитки")[0]
     cloth = Product.objects.filter(category = category)
-    return render(request, 'category/cloth.html', {"product": cloth})
+    if request.GET.get("price") == None:
+        return render(request, 'category/drinks.html', {'product': cloth})
+    elif request.GET.get("price") != None:
+        cloth = Product.objects.filter(Q(price__lte = request.GET.get("price")) & Q(category = category))
+        return render(request, 'category/drinks.html', {"product": cloth})
+
 
 def category(request):
     category = Category.objects.all()

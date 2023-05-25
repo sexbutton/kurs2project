@@ -15,9 +15,10 @@
 <body>
     <div class="header">
         <a href="{% url 'main' %}">
-            <img src="{% static 'img/mainlogo.png' %}" alt="">
+            <img src="{% static 'img/GoldenFish.png' %}" alt="">
         </a>
         <ul>
+            <li><a href="{% url 'main' %}">Вся продукиця</a></li>
             <li><a href="{% url 'new' %}">Новинки</a></li>
             <li><a href="{% url 'popular' %}">Популярное</a></li>
             <li><a href="{% url 'sale' %}">Распродажа</a></li>
@@ -60,33 +61,7 @@
     {% block content %}{% endblock %}
 
     <div class="footer">
-
-        <div class="infojob">
-            <ul>
-                <li>Стать курьером</li>
-                <li>IT-технологии</li>
-                <li>Стать продовцом</li>
-                <li>Стать поставщиком</li>
-            </ul>
-        </div>
-        <div class="infohelp">
-            <ul>
-                <li>Поддержка</li>
-                <li>Социальные сети</li>
-                <li>Благоворительность</li>
-                <li>Горячая линия</li>
-            </ul>
-        </div>
-        <div class="info">
-            <ul>
-                <li>Как оформить заказ</li>
-                <li>Возврат товаров</li>
-                <li>Отмена заказа</li>
-                <li>Безопасность</li>
-                <li>Доставка</li>
-                <li>Оплата</li>
-            </ul>
-        </div>
+        <img src="{% static 'img/footer-rolls.png' %}" id="footer-rolls" alt="">
     </div>
 
 </body>
