@@ -4,7 +4,7 @@ html body {
     margin: 0;
     font-family: 'Nunito Sans', sans-serif;
     color: wheat;
-    background-color: #333333    
+    background-color: #A0A0A0    
 }
 
 .header {
@@ -12,8 +12,8 @@ html body {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: #A0A0A0;
-    color: #362c36;
+    background-color: #333333;
+    color: wheat;
     position: fixed;
     left: 0;
     top: 0;
@@ -22,7 +22,7 @@ html body {
 
 a {
     text-decoration: none;
-    color: wheat;
+    color: wheat
 }
 
 .auth {
@@ -32,7 +32,7 @@ a {
 }
 
 .footer {
-    background-color: #A0A0A0;
+    background-color: #333333;
     display: flex;
     align-items: center;
     justify-content:center;
@@ -41,7 +41,7 @@ a {
 .header li {
     display: inline;
     margin: 5px;
-    color: #a7cbd5;
+    color: wheat;
 }
 
 #footer-rolls{

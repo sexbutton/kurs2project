@@ -15,7 +15,7 @@ body, html {
 
 a {
     text-decoration: none;
-    color: #362c36;
+    color: wheat;
 }
 
 input[type=range]  {
@@ -37,7 +37,7 @@ input[type=range]  {
     max-height: 800px;
     height: 800px;
     width: 500px;
-    background-color: #A0A0A0;
+    background-color: #333333;
     display: inline-block;
     border-radius: 20px;
     padding: 7px;
@@ -50,7 +50,7 @@ input[type=range]  {
 }
 
 .product {
-    background-color: #A0A0A0;
+    background-color: #333333;
     display: inline-block;
     max-width: 320px;
     min-height: 417px;

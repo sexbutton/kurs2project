@@ -12,7 +12,7 @@
 </head>
 <body>
     {% if lencart %}
-    <div class="container">
+    <div style="margin-top: 110px;" class="container">
         <div class="cart">
             <div class="products">
                 {% for i in cart %}
@@ -43,7 +43,7 @@
                     <a href="{% url 'createform' %}">Оформить заказ:<img src="{% static 'img/createform.png' %}" alt=""></a>
                 </div>
             {% else %}
-                    <div class="clearcart">
+                    <div style="margin-top: 110px;" class="clearcart">
                         Корзина пуста
                     </div>
             {% endif %}

@@ -10,7 +10,8 @@
 <body>
     {% block content %}
 
-    <form method="post">
+    <h2 style="margin-top: 110px; text-align: center;">Авторизация</h2>
+    <form style="text-align: center;" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Login</button>

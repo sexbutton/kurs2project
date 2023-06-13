@@ -73,17 +73,23 @@ def souvenirs(request, id , slug):
     return render(request, 'suvenir/souvenirs.html', {'souvenirs':souvenirs})
 
 def cart_add(request, product_id):
-    product = Product.objects.get(id = product_id)
-    carts = Cart.objects.filter(user = request.user, product=product)
-
-    if not carts.exists():
-        Cart.objects.create(user = request.user, product = product, quantity = 1)
-    else:
-        cart = carts.first()
-        cart.quantity += 1
-        cart.save()
     
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+    if request.user.is_authenticated:
+        product = Product.objects.get(id = product_id)
+        carts = Cart.objects.filter(user = request.user, product=product)
+        if not carts.exists():
+            Cart.objects.create(user = request.user, product = product, quantity = 1)
+            return HttpResponseRedirect(request.META['HTTP_REFERER'])
+        else:
+            cart = carts.first()
+            cart.quantity += 1
+            cart.save()
+            return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    else:
+        return render(request, "authorization/registration.html")
+    
+    
 
 def cart_remove(request, cart_id):
     cart = Cart.objects.get(id = cart_id)
